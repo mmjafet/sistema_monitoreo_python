@@ -2,24 +2,10 @@ import socket
 import threading
 import tkinter as tk
 from tkinter import scrolledtext
-
+from plantilla import create_button, centrar_frame_principal
 
 clients = []  # Lista para almacenar los sockets de los clientes conectados
 
-def create_button(frame, texto, comando):
-    button = tk.Button(
-        frame,
-        text=texto,
-        command=comando,
-        font=("Sans-Serif", 12, "bold"),
-        fg="#ffffff",  # Color del texto
-        bg="#282e61",  # Color de fondo del botón
-        activebackground="#636cb4",  # Color de fondo cuando el botón está activo
-        highlightthickness=0,  # Grosor del contorno
-        highlightbackground="#282e61",  # Color del contorno (mismo que el fondo del botón)
-        highlightcolor="#282e61"  # Color del contorno al enfocar el botón
-    )
-    return button
 
 def start_server(port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -95,17 +81,31 @@ root = tk.Tk()
 root.title("Servidor de Chat")
 root.configure(bg="#0f1440")
 
+# Titulo
+label = tk.Label(root, text="Servidor de mensajes", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440")
+label.pack(pady=(10, 5))
+
 # Crear área de texto para mostrar mensajes
-text_area = scrolledtext.ScrolledText(root, width=50, height=20)
+text_area = scrolledtext.ScrolledText(root, width=50, height=20,font=("Sans-Serif", 12, "bold"),
+        fg="#0f1440",  # Color del texto
+        bg="#cdd4ea",  # Color de fondo del botón
+        )
 text_area.pack(padx=20, pady=20)
 
+# Crear un frame para los widgets de entrada de mensajes y botón
+message_frame = tk.Frame(root, bg="#0f1440")
+message_frame.pack(padx=10, pady=10)
+
 # Entrada de texto para enviar mensajes
-message_entry = tk.Entry(root, width=40)
-message_entry.pack(padx=10, pady=5)
+message_entry = tk.Entry(message_frame, width=40, font=("Sans-Serif", 12, "bold"),
+        fg="#ffffff",  # Color del texto
+        bg="#636cb4",  # Color de fondo del botón
+        )
+message_entry.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
 # Botón para enviar mensajes
-send_button = create_button(root, "Enviar Mensaje", send_message)
-send_button.pack(pady=5)
+send_button = create_button(message_frame, ">", send_message)
+send_button.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
 # Configurar el puerto
 port = 12345  # Cambia esto si deseas usar otro puerto
@@ -114,5 +114,10 @@ port = 12345  # Cambia esto si deseas usar otro puerto
 start_button = create_button(root, "Iniciar Servidor", start_server_thread)
 start_button.pack(pady=10)
 
+#-----------Ajustar el tamaño de la ventana--------
+
+centrar_frame_principal(root)
+
 # Iniciar el bucle principal de la interfaz
 root.mainloop()
+
