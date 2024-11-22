@@ -2,6 +2,7 @@ import socket
 import tkinter as tk
 from PIL import Image, ImageTk
 import io
+from plantilla import centrar_frame_principal, crear_label, create_entry, create_button
 
 def start_screen_monitoring_client(host, port):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -58,16 +59,26 @@ def connect_to_server():
 # Crear la interfaz para ingresar la IP y el puerto
 connect_window = tk.Tk()
 connect_window.title("Conectar al Servidor")
+connect_window.configure(bg="#0f1440")  # Fondo con un tono más oscuro
+connect_window.geometry("600x300")
 
-tk.Label(connect_window, text="IP del Servidor:").pack()
-ip_entry = tk.Entry(connect_window)
-ip_entry.pack()
+# Titulo
+label = tk.Label(connect_window, text="Ver pantalla servidor", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440")
+label.pack(pady=(30))
 
-tk.Label(connect_window, text="Puerto:").pack()
-port_entry = tk.Entry(connect_window)
-port_entry.pack()
+crear_label("IP del Servidor:", connect_window).pack()
+ip_entry = create_entry(connect_window)
+ip_entry.pack(pady=10, padx=10)
 
-connect_button = tk.Button(connect_window, text="Conectar", command=connect_to_server)
-connect_button.pack()
+crear_label("Puerto:", connect_window).pack()
+port_entry = create_entry(connect_window)
+port_entry.pack(pady=10, padx=10)
+
+connect_button = create_button(connect_window,"Conectar", connect_to_server)
+connect_button.pack(pady=10, padx=10)
+
+#-----------Ajustar el tamaño de la ventana--------
+
+centrar_frame_principal(connect_window)
 
 connect_window.mainloop()

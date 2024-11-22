@@ -24,10 +24,11 @@ def crear_label(texto, frame):
     label = tk.Label(frame, text=texto, font=("Arial", 16), fg="#cdd4ea", bg="#0f1440")
     return label
 
-def create_entry(frame):
+def create_entry(frame, mostrar):
     entry = tk.Entry(frame, width=20, font=("Sans-Serif", 12, "bold"),
         fg="#ffffff",  # Color del texto
         bg="#636cb4",  # Color de fondo del botón
+        show=mostrar
         )
     return entry
 

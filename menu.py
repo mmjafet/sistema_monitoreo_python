@@ -143,8 +143,8 @@ subtitle_label.pack(pady=(10, 5))  # Espaciado superior e inferior
 # Separador
 separator(frame2)
 
-#button8 = create_button(frame2, "Ping remoto", "denegarping.py")
-#button8.pack(pady=10, ipadx=20, ipady=10)
+button8 = create_button(frame2, "Seleccionar", "bloquearTeclado.py")
+button8.pack(pady=10, ipadx=20, ipady=10)
 
 #-------------------DENEGAR ACCESO A PÁGINAS--------------------------
 # Subtítulo y separador para la sección de acceso a páginas

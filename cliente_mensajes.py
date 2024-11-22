@@ -62,7 +62,7 @@ frame_puerto = create_frame_horizontal(root)
 frame_puerto.pack(padx=10, pady=10)
 
 crear_label("Puerto:", frame_puerto).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
-port_entry = create_entry(frame_puerto)
+port_entry = create_entry(frame_puerto,"")
 port_entry.insert(0, "12345")  # Valor por defecto
 port_entry.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
 
