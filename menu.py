@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import subprocess
 import os
+from plantilla import centrar_frame_principal
 
 def run_script(script_name):
     # Asegúrate de que la ruta del script sea correcta
@@ -107,7 +108,7 @@ subtitle_label.pack(pady=(10, 5))  # Espaciado superior e inferior
 # Separador
 separator(frame)
 
-button5 = create_button(frame,"Enviar y recibir archivos", "archivos.py")
+button5 = create_button(frame,"Seleccionar", "archivos.py")
 button5.pack(pady=10, ipadx=20, ipady=10)
 
 
@@ -119,7 +120,7 @@ subtitle_label.pack(pady=(10, 5))  # Espaciado superior e inferior
 # Separador
 separator(frame2)
 
-button6 = create_button(frame2, "Apagar pc remota", "apagarUbuntu.py")
+button6 = create_button(frame2, "Seleccionar", "apagarUbuntu.py")
 button6.pack(pady=10, ipadx=20, ipady=10)
 
 #--------------------DENEGAR/PERMITIR PING-------------------------
@@ -130,7 +131,7 @@ subtitle_label.pack(pady=(10, 5))  # Espaciado superior e inferior
 # Separador
 separator(frame2)
 
-button6 = create_button(frame2, "Ping remoto", "denegarping.py")
+button6 = create_button(frame2, "Seleccionar", "denegarping.py")
 button6.pack(pady=10, ipadx=20, ipady=10)
 
 
@@ -157,28 +158,9 @@ separator(frame2)
 #button7.pack(pady=10, ipadx=20, ipady=10)
 
 
-# Ajustar el tamaño de la ventana
+#-----------Ajustar el tamaño de la ventana--------
 
-# Hacer que la ventana ajuste su tamaño según el contenido
-root.update_idletasks()  # Asegura que la ventana haya calculado su tamaño
-
-# Obtener las dimensiones de la pantalla
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
-
-# Obtener las dimensiones de la ventana (después de que se haya ajustado al contenido)
-window_width = root.winfo_width()
-window_height = root.winfo_height()
-
-# Calcular las coordenadas para centrar la ventana
-x = (screen_width // 2) - (window_width // 2)
-y = (screen_height // 2) - (window_height // 2)
-
-# Establecer la geometría de la ventana con las coordenadas calculadas
-root.geometry(f"+{x}+{y}")
-
-#root.geometry("500x500")
-root.resizable(True, True)
+centrar_frame_principal(root)
 
 # Iniciar el bucle principal de la interfaz
 root.mainloop()
