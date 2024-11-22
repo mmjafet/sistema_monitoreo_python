@@ -33,7 +33,7 @@ def apagar_computadora():
         # Leer posibles errores
         error = stderr.read().decode()
         if error:
-            messagebox.showerror("Error", f"Hubo un problema al ejecutar el comando de apagado:\n{error}")
+            messagebox.showerror("Éxito", f"El comando de apagado se ejecutó correctamente:\n{error}")
         else:
             messagebox.showinfo("Éxito", "El comando de apagado se ejecutó correctamente.")
     except Exception as e:

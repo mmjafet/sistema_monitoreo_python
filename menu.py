@@ -108,7 +108,7 @@ subtitle_label.pack(pady=(10, 5))  # Espaciado superior e inferior
 # Separador
 separator(frame)
 
-button5 = create_button(frame,"Seleccionar", "archivos.py")
+button5 = create_button(frame,"Seleccionar", "enviar_recibir.py")
 button5.pack(pady=10, ipadx=20, ipady=10)
 
 
@@ -154,8 +154,8 @@ subtitle_label.pack(pady=(10, 5))  # Espaciado superior e inferior
 # Separador
 separator(frame2)
 
-#button7 = create_button(frame2, "Ping remoto", "denegarping.py")
-#button7.pack(pady=10, ipadx=20, ipady=10)
+button7 = create_button(frame2, "Seleccionar", "bloquear_pagina.py")
+button7.pack(pady=10, ipadx=20, ipady=10)
 
 
 #-----------Ajustar el tamaño de la ventana--------
