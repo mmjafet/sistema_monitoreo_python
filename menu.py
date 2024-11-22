@@ -75,10 +75,10 @@ frame_pantalla = create_frame_horzontal(frame)
 frame_pantalla.pack(pady=(10,30))
 
 # Botones mejorados para ejecutar diferentes scripts
-button1 = create_button(frame_pantalla,"Compartir Pantalla","servidor.py")
+button1 = create_button(frame_pantalla,"Compartir Pantalla(Servidor)","servidor.py")
 button1.grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
 
-button2 = create_button(frame_pantalla,"Ver Pantalla Externa","cliente.py")
+button2 = create_button(frame_pantalla,"Ver Pantalla Externa(cliente)","cliente.py")
 button2.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
 
 #---------------------CHAT--------------------------

@@ -3,7 +3,23 @@ import threading
 import tkinter as tk
 from tkinter import scrolledtext
 
+
 clients = []  # Lista para almacenar los sockets de los clientes conectados
+
+def create_button(frame, texto, comando):
+    button = tk.Button(
+        frame,
+        text=texto,
+        command=comando,
+        font=("Sans-Serif", 12, "bold"),
+        fg="#ffffff",  # Color del texto
+        bg="#282e61",  # Color de fondo del botón
+        activebackground="#636cb4",  # Color de fondo cuando el botón está activo
+        highlightthickness=0,  # Grosor del contorno
+        highlightbackground="#282e61",  # Color del contorno (mismo que el fondo del botón)
+        highlightcolor="#282e61"  # Color del contorno al enfocar el botón
+    )
+    return button
 
 def start_server(port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -77,6 +93,7 @@ def send_message():
 # Crear la ventana principal
 root = tk.Tk()
 root.title("Servidor de Chat")
+root.configure(bg="#0f1440")
 
 # Crear área de texto para mostrar mensajes
 text_area = scrolledtext.ScrolledText(root, width=50, height=20)
@@ -87,14 +104,14 @@ message_entry = tk.Entry(root, width=40)
 message_entry.pack(padx=10, pady=5)
 
 # Botón para enviar mensajes
-send_button = tk.Button(root, text="Enviar Mensaje", command=send_message)
+send_button = create_button(root, "Enviar Mensaje", send_message)
 send_button.pack(pady=5)
 
 # Configurar el puerto
 port = 12345  # Cambia esto si deseas usar otro puerto
 
 # Botón para iniciar el servidor
-start_button = tk.Button(root, text="Iniciar Servidor", command=start_server_thread)
+start_button = create_button(root, "Iniciar Servidor", start_server_thread)
 start_button.pack(pady=10)
 
 # Iniciar el bucle principal de la interfaz
