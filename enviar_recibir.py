@@ -80,19 +80,24 @@ root = tk.Tk()
 root.title("Compartir Archivos")
 root.configure(bg="#0f1440")
 
-tk.Label(root, text="Compartir Archivos", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
+#tk.Label(root, text="Compartir Archivos", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
+
+#-------------------Frame para datos-------------------
+frame_data = create_frame_horizontal(root)
+frame_data.pack(padx=10, pady=10)
+
 
 # Crear los campos de la interfaz
-tk.Label(root, text="Dirección IP de la PC de destino").grid(row=0, column=0, sticky=tk.W, padx=10, pady=5)
-ip_entry = tk.Entry(root, width=30)
-ip_entry.grid(row=0, column=1, padx=10, pady=5)
+crear_label("Dirección IP de la PC de destino", frame_data).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
+ip_entry = create_entry(frame_data,"")
+ip_entry.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
 
-tk.Label(root, text="Usuario").grid(row=1, column=0, sticky=tk.W, padx=10, pady=5)
-usuario_entry = tk.Entry(root, width=30)
-usuario_entry.grid(row=1, column=1, padx=10, pady=5)
+crear_label("Usuario", frame_data).grid(row=1, column=0, sticky=tk.W, padx=10, pady=5)
+usuario_entry = create_entry(frame_data, "")
+usuario_entry.grid(row=1, column=1, padx=10, ipadx=20, ipady=10)
 
-tk.Label(root, text="Contraseña").grid(row=2, column=0, sticky=tk.W, padx=10, pady=5)
-contrasena_entry = tk.Entry(root, width=30, show="*")
+crear_label("Contraseña", frame_data).grid(row=2, column=0, sticky=tk.W, padx=10, pady=5)
+contrasena_entry = create_entry(frame_data, "*")
 contrasena_entry.grid(row=2, column=1, padx=10, pady=5)
 
 tk.Label(root, text="Seleccionar archivo a enviar/recibir").grid(row=3, column=0, sticky=tk.W, padx=10, pady=5)
