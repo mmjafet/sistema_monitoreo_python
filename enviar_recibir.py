@@ -100,21 +100,22 @@ crear_label("Contraseña", frame_data).grid(row=2, column=0, sticky=tk.W, padx=1
 contrasena_entry = create_entry(frame_data, "*")
 contrasena_entry.grid(row=2, column=1, padx=10, pady=5)
 
-tk.Label(root, text="Seleccionar archivo a enviar/recibir").grid(row=3, column=0, sticky=tk.W, padx=10, pady=5)
-archivo_entry = tk.Entry(root, width=30)
+crear_label("Seleccionar archivo a enviar", frame_data).grid(row=3, column=0, sticky=tk.W, padx=10, pady=5)
+archivo_entry = create_entry(frame_data, "")
 archivo_entry.grid(row=3, column=1, padx=10, pady=5)
-seleccionar_button = tk.Button(root, text="Seleccionar archivo", command=seleccionar_archivo)
+
+seleccionar_button = create_button(frame_data, "Seleccionar archivo", seleccionar_archivo)
 seleccionar_button.grid(row=3, column=2, padx=10, pady=5)
 
-tk.Label(root, text="Ruta de destino en la PC remota o local").grid(row=4, column=0, sticky=tk.W, padx=10, pady=5)
-destino_entry = tk.Entry(root, width=30)
+crear_label("Ruta de destino en la PC remota o local", frame_data).grid(row=4, column=0, sticky=tk.W, padx=10, pady=5)
+destino_entry = create_entry(frame_data, "")
 destino_entry.grid(row=4, column=1, padx=10, pady=5)
 
 # Botones para enviar o recibir archivos
-enviar_button = tk.Button(root, text="Enviar archivo", command=enviar_archivo)
+enviar_button = create_button(frame_data, "Enviar archivo", enviar_archivo)
 enviar_button.grid(row=5, column=0, padx=10, pady=20)
 
-recibir_button = tk.Button(root, text="Recibir archivo", command=recibir_archivo)
+recibir_button = create_button(frame_data, "Recibir archivo", recibir_archivo)
 recibir_button.grid(row=5, column=1, padx=10, pady=20)
 
 # Iniciar la interfaz gráfica
