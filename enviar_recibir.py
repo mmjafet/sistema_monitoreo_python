@@ -80,7 +80,7 @@ root = tk.Tk()
 root.title("Compartir Archivos")
 root.configure(bg="#0f1440")
 
-#tk.Label(root, text="Compartir Archivos", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
+tk.Label(root, text="Compartir Archivos", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
 
 #-------------------Frame para datos-------------------
 frame_data = create_frame_horizontal(root)
@@ -90,33 +90,36 @@ frame_data.pack(padx=10, pady=10)
 # Crear los campos de la interfaz
 crear_label("Dirección IP de la PC de destino", frame_data).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
 ip_entry = create_entry(frame_data,"")
-ip_entry.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
+ip_entry.grid(row=0, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("Usuario", frame_data).grid(row=1, column=0, sticky=tk.W, padx=10, pady=5)
+crear_label("Usuario", frame_data).grid(row=1, column=0, padx=10, ipadx=20, ipady=10)
 usuario_entry = create_entry(frame_data, "")
-usuario_entry.grid(row=1, column=1, padx=10, ipadx=20, ipady=10)
+usuario_entry.grid(row=1, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("Contraseña", frame_data).grid(row=2, column=0, sticky=tk.W, padx=10, pady=5)
+crear_label("Contraseña", frame_data).grid(row=2, column=0, padx=10, ipadx=20, ipady=10)
 contrasena_entry = create_entry(frame_data, "*")
-contrasena_entry.grid(row=2, column=1, padx=10, pady=5)
+contrasena_entry.grid(row=2, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("Seleccionar archivo a enviar", frame_data).grid(row=3, column=0, sticky=tk.W, padx=10, pady=5)
+crear_label("Seleccionar archivo a enviar", frame_data).grid(row=3, column=0, padx=10, ipadx=20, ipady=10)
 archivo_entry = create_entry(frame_data, "")
-archivo_entry.grid(row=3, column=1, padx=10, pady=5)
+archivo_entry.grid(row=3, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
 seleccionar_button = create_button(frame_data, "Seleccionar archivo", seleccionar_archivo)
 seleccionar_button.grid(row=3, column=2, padx=10, pady=5)
 
-crear_label("Ruta de destino en la PC remota o local", frame_data).grid(row=4, column=0, sticky=tk.W, padx=10, pady=5)
+crear_label("Ruta de destino en la PC remota o local", frame_data).grid(row=4, column=0, padx=10, ipadx=20, ipady=10)
 destino_entry = create_entry(frame_data, "")
-destino_entry.grid(row=4, column=1, padx=10, pady=5)
+destino_entry.grid(row=4, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
 # Botones para enviar o recibir archivos
 enviar_button = create_button(frame_data, "Enviar archivo", enviar_archivo)
 enviar_button.grid(row=5, column=0, padx=10, pady=20)
 
-recibir_button = create_button(frame_data, "Recibir archivo", recibir_archivo)
-recibir_button.grid(row=5, column=1, padx=10, pady=20)
+# recibir_button = create_button(frame_data, "Recibir archivo", recibir_archivo)
+# recibir_button.grid(row=5, column=1, padx=10, pady=20)
 
+#-----------Ajustar el tamaño de la ventana--------
+
+centrar_frame_principal(root)
 # Iniciar la interfaz gráfica
 root.mainloop()
