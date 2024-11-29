@@ -2,6 +2,8 @@ import paramiko
 from scp import SCPClient
 import tkinter as tk
 from tkinter import filedialog, messagebox
+from plantilla import create_frame_horizontal, crear_label, create_button, create_entry, centrar_frame_principal
+
 
 # Función para seleccionar el archivo a enviar
 def seleccionar_archivo():
@@ -75,7 +77,10 @@ def recibir_archivo():
 
 # Crear la ventana principal
 root = tk.Tk()
-root.title("Transferencia de Archivos por SSH")
+root.title("Compartir Archivos")
+root.configure(bg="#0f1440")
+
+tk.Label(root, text="Compartir Archivos", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
 
 # Crear los campos de la interfaz
 tk.Label(root, text="Dirección IP de la PC de destino").grid(row=0, column=0, sticky=tk.W, padx=10, pady=5)
