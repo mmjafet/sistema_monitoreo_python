@@ -5,4 +5,5 @@ Sistema de monitoreo. Permite realizar acciones como:
 - Restringir ping
 - Enviar y recibir archivos
 - Apagar una computadora remota 
-- Crear o unirse a una sala de los chat
+- Crear o unirse a una sala de chat
+- Mostrar acciones dd cliente 
