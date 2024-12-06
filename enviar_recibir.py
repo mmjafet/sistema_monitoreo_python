@@ -3,8 +3,20 @@ from scp import SCPClient
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from plantilla import create_frame_horizontal, crear_label, create_button, create_entry, centrar_frame_principal
+import socket
 
-
+# Obtener la IP local de la máquina
+def obtener_ip_local():
+    try:
+        # Conecta a un servidor público (como Google DNS) para determinar la IP asignada
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # Usa un servidor externo
+        ip_externa = s.getsockname()[0]
+        s.close()
+        return ip_externa
+    except Exception as e:
+        return "No se pudo obtener la IP externa"
+    
 # Función para seleccionar el archivo a enviar
 def seleccionar_archivo():
     archivo = filedialog.askopenfilename(title="Seleccionar archivo")
@@ -83,6 +95,10 @@ root.configure(bg="#0f1440")
 action_label = tk.Label(root, text="Compartir archivos", font=("Segoe UI", 25, "bold"), fg="#ecf0f1", bg="#0f1440")
 action_label.pack(fill="x", pady=(20, 30))
 
+# Mostrar la dirección IP de la máquina
+ip_local_label = tk.Label(root, text=f"Tu IP es: {obtener_ip_local()}", font=("Segoe UI", 14), fg="#ecf0f1", bg="#0f1440")
+ip_local_label.pack(fill="x", pady=(0, 20))
+
 #-------------------Frame para datos-------------------
 frame_data = create_frame_horizontal(root)
 frame_data.pack(padx=10, pady=10)
@@ -108,7 +124,7 @@ archivo_entry.grid(row=3, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 seleccionar_button = create_button(frame_data, "Seleccionar archivo", seleccionar_archivo)
 seleccionar_button.grid(row=3, column=2, padx=10, pady=5)
 
-crear_label("Ruta de destino en la PC remota o local", frame_data).grid(row=4, column=0, padx=10, ipadx=20, ipady=10)
+crear_label("Ruta de destino de archivo", frame_data).grid(row=4, column=0, padx=10, ipadx=20, ipady=10)
 destino_entry = create_entry(frame_data, "")
 destino_entry.grid(row=4, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
