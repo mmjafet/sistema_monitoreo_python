@@ -86,6 +86,9 @@ button1.grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
 button2 = create_button(frame_pantalla,"Ver Pantalla Externa(cliente)","cliente.py")
 button2.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
 
+button8 = create_button(frame_pantalla,"Ver Cliente","verClienteNM.py")
+button8.grid(row=1, column=0, padx=10, ipadx=20, ipady=10)
+
 #---------------------CHAT--------------------------
 # Subtítulo y separador para la sección de monitoreo
 subtitle_label= crear_label("Chatear", frame)

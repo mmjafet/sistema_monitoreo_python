@@ -5,8 +5,6 @@ import pyautogui
 import io
 import tkinter as tk
 from tkinter import messagebox
-from plantilla import crear_label, centrar_frame_principal
-
 
 def install_dependencies():
     """
@@ -23,7 +21,7 @@ def install_dependencies():
         try:
             import PIL
             from PIL import Image
-            if not hasattr(PIL, 'PILLOW_VERSION') or int(PIL.__version__.split('.')[0]) < 9:
+            if not hasattr(PIL, 'PILLOW_VERSION') or int(PIL._version_.split('.')[0]) < 9:
                 raise ImportError
         except ImportError:
             print("Instalando Pillow...")
@@ -84,16 +82,11 @@ def start_screen_monitoring_server(port):
 # Crear la ventana principal
 root = tk.Tk()
 root.title("Servidor de Monitoreo de Pantalla")
-root.configure(bg="#0f1440")
 
-# Titulo
-action_label = tk.Label(root, text="Servidor", font=("Segoe UI", 25, "bold"), fg="#ecf0f1", bg="#0f1440")
-action_label.pack(fill="x", pady=(20, 30))
-
-ip_label = crear_label("Esperando IP...", root)
+ip_label = tk.Label(root, text="Esperando IP...")
 ip_label.pack(pady=10)
 
-port_label = crear_label("Esperando puerto...", root)
+port_label = tk.Label(root, text="Esperando puerto...")
 port_label.pack(pady=10)
 
 port = 12345
@@ -110,6 +103,5 @@ import threading
 server_thread = threading.Thread(target=start_screen_monitoring_server, args=(port,), daemon=True)
 server_thread.start()
 
-centrar_frame_principal(root)
 root.geometry("600x400")
 root.mainloop()

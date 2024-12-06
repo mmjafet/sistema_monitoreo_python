@@ -1,49 +1,84 @@
 import socket
-import cv2
-import pickle
-import struct
+import tkinter as tk
+from PIL import Image, ImageTk
+import io
+from plantilla import centrar_frame_principal, crear_label, create_entry, create_button
 
-def start_client(server_ip='172.168.1.242', port=9999):
-    # Crear socket del cliente
+def start_screen_monitoring_client(host, port):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((server_ip, port))
-    print(f"[INFO] Conectado al servidor {server_ip}:{port}")
+    client_socket.connect((host, port))
 
-    try:
-        data = b""
-        payload_size = struct.calcsize("Q")
+    def update_image():
+        try:
+            # Recibir el tamaño de la imagen
+            size_data = client_socket.recv(4)
+            if not size_data:
+                return
+            size = int.from_bytes(size_data, byteorder='big')
 
-        while True:
-            # Recibir datos del servidor
-            while len(data) < payload_size:
-                packet = client_socket.recv(4096)
+            # Recibir la imagen
+            image_data = b''
+            while len(image_data) < size:
+                packet = client_socket.recv(size - len(image_data))
                 if not packet:
-                    break
-                data += packet
+                    return
+                image_data += packet
 
-            # Extraer tamaño del paquete
-            packed_msg_size = data[:payload_size]
-            data = data[payload_size:]
-            msg_size = struct.unpack("Q", packed_msg_size)[0]
+            # Verificar si la imagen se recibió completamente
+            if len(image_data) == size:
+                # Mostrar la imagen
+                image = Image.open(io.BytesIO(image_data))
+                photo = ImageTk.PhotoImage(image)
+                label.config(image=photo)
+                label.image = photo
 
-            while len(data) < msg_size:
-                data += client_socket.recv(4096)
+            # Actualizar la imagen en la interfaz cada 100 ms
+            root.after(100, update_image)
+        except Exception as e:
+            print(f"Error: {e}")
 
-            # Deserializar datos
-            frame_data = data[:msg_size]
-            data = data[msg_size:]
-            frame = pickle.loads(frame_data)
+    # Crear la interfaz gráfica
+    root = tk.Tk()
+    root.title("Monitoreo de Pantalla Remota")
 
-            # Mostrar la pantalla
-            cv2.imshow("Pantalla del Servidor", frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-    except Exception as e:
-        print(f"[ERROR] Ocurrió un error: {e}")
-    finally:
-        client_socket.close()
-        cv2.destroyAllWindows()
-        print("[INFO] Conexión cerrada.")
+    label = tk.Label(root)
+    label.pack()
 
-if __name__ == "__main__":
-    start_client()
+    # Iniciar la actualización de la imagen
+    root.after(100, update_image)
+    root.mainloop()
+
+    client_socket.close()
+
+def connect_to_server():
+    host = ip_entry.get()
+    port = int(port_entry.get())
+    connect_window.destroy()  # Cerrar la ventana de conexión antes de iniciar la recepción
+    start_screen_monitoring_client(host, port)
+
+# Crear la interfaz para ingresar la IP y el puerto
+connect_window = tk.Tk()
+connect_window.title("Conectar al Servidor")
+connect_window.configure(bg="#0f1440")  # Fondo con un tono más oscuro
+connect_window.geometry("600x300")
+
+# Titulo
+label = tk.Label(connect_window, text="Ver pantalla servidor", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440")
+label.pack(pady=(30))
+
+crear_label("IP del Servidor:", connect_window).pack()
+ip_entry = create_entry(connect_window, "")
+ip_entry.pack(pady=10, padx=10)
+
+crear_label("Puerto:", connect_window).pack()
+port_entry = create_entry(connect_window, "")
+port_entry.pack(pady=10, padx=10)
+
+connect_button = create_button(connect_window,"Conectar", connect_to_server)
+connect_button.pack(pady=10, padx=10)
+
+#-----------Ajustar el tamaño de la ventana--------
+
+centrar_frame_principal(connect_window)
+
+connect_window.mainloop()
