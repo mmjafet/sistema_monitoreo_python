@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import subprocess
 import os
-from plantilla import centrar_frame_principal
+from plantilla import centrar_frame_principal, obtener_ip_local
 
 def run_script(script_name):
     # Asegúrate de que la ruta del script sea correcta
@@ -56,6 +56,10 @@ frame_principal.columnconfigure(1, weight=1)
 # Etiqueta de título (centrada en el frame_principal)
 title_label = tk.Label(frame_principal, text="SISTEMA DE MONITOREO", font=("Segoe UI", 25, "bold"), fg="#ecf0f1", bg="#0f1440")
 title_label.grid(row=0, column=0, columnspan=2, pady=(0, 30), sticky="nsew")  # Ocupa ambas columnas
+
+# Mostrar la dirección IP de la máquina
+ip_local_label = tk.Label(root, text=f"Tu IP es: {obtener_ip_local()}", font=("Segoe UI", 14), fg="#ecf0f1", bg="#0f1440")
+ip_local_label.pack(fill="x", pady=(0, 20))
 
 frame = create_frame_horzontal(frame_principal)
 frame.grid(row=1, column = 0, padx=10, pady=10,  sticky="nsew")

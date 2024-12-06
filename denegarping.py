@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 import subprocess
-from plantilla import crear_label, create_entry, create_button, centrar_frame_principal
+from plantilla import crear_label, create_entry, create_button, centrar_frame_principal, obtener_ip_local
 
 def run_command(command, password):
     # Agregar la contraseña al comando de sudo
@@ -70,6 +70,10 @@ root.geometry("600x300")
 # Titulo
 action_label = tk.Label(root, text="Permitir/denegar el ping", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440")
 action_label.pack(fill="x", pady=(20, 30))
+
+# Mostrar la dirección IP de la máquina
+ip_local_label = tk.Label(root, text=f"Tu IP es: {obtener_ip_local()}", font=("Segoe UI", 14), fg="#ecf0f1", bg="#0f1440")
+ip_local_label.pack(fill="x", pady=(0, 20))
 
 action_variable = tk.StringVar(root)
 action_variable.set("Seleccione la acción")
