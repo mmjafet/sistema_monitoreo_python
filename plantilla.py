@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import socket
 
 def create_button(frame, texto, comando):
     button = tk.Button(
@@ -53,3 +53,15 @@ def centrar_frame_principal(root):
 
     #root.geometry("500x500")
     root.resizable(True, True)
+
+# Obtener la IP local de la máquina
+def obtener_ip_local():
+    try:
+        # Conecta a un servidor público (como Google DNS) para determinar la IP asignada
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # Usa un servidor externo
+        ip_externa = s.getsockname()[0]
+        s.close()
+        return ip_externa
+    except Exception as e:
+        return "No se pudo obtener la IP externa"
