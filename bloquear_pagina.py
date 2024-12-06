@@ -102,31 +102,31 @@ frame_ip = create_frame_horizontal(root)
 frame_ip.pack(padx=10, pady=10)
 
 crear_label("Dominio a bloquear/desbloquear:", frame_ip).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
-dominio_entry = tk.Entry(frame_ip, font=("Arial", 12), width=40)
-dominio_entry.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
+dominio_entry = create_entry(frame_ip, "")
+dominio_entry.grid(row=0, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("IP del servidor:", root).pack(pady=5)
-ip_entry = tk.Entry(root, font=("Arial", 12), width=40)
-ip_entry.pack(pady=5)
+crear_label("IP del servidor:", frame_ip).grid(row=1, column=0, padx=10, ipadx=20, ipady=10)
+ip_entry = create_entry(frame_ip,"")
+ip_entry.grid(row=1, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("Usuario:", root).pack(pady=5)
-usuario_entry = tk.Entry(root, font=("Arial", 12), width=40)
-usuario_entry.pack(pady=5)
+crear_label("Usuario:", frame_ip).grid(row=2, column=0, padx=10, ipadx=20, ipady=10)
+usuario_entry = create_entry(frame_ip, "")
+usuario_entry.grid(row=2, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("Contraseña:", root).pack(pady=5)
-password_entry = tk.Entry(root, font=("Arial", 12), width=40, show="*")
-password_entry.pack(pady=5)
+crear_label("Contraseña:", frame_ip).grid(row=3, column=0, padx=10, ipadx=20, ipady=10)
+password_entry = create_entry(frame_ip,"*")
+password_entry.grid(row=3, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("Contraseña administrador:", root).pack(pady=5)
-password_sudo_entry = tk.Entry(root, font=("Arial", 12), width=40, show="*")
-password_sudo_entry.pack(pady=5)
+crear_label("Contraseña administrador:", frame_ip).grid(row=4, column=0, padx=10, ipadx=20, ipady=10)
+password_sudo_entry = create_entry(frame_ip, "*")
+password_sudo_entry.grid(row=4, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
 # Botones para bloquear y desbloquear
-bloquear_button = tk.Button(root, text="Bloquear Página", font=("Arial", 12), bg="#282e61", fg="#ffffff", command=bloquear_pagina)
-bloquear_button.pack(pady=10)
+bloquear_button = create_button(frame_ip, "Bloquear Página", bloquear_pagina)
+bloquear_button.grid(row=5, column=0, padx=10, pady=20)
 
-desbloquear_button = tk.Button(root, text="Desbloquear Página", font=("Arial", 12), bg="#282e61", fg="#ffffff", command=desbloquear_pagina)
-desbloquear_button.pack(pady=10)
+desbloquear_button = create_button(frame_ip, "Desbloquear Página", desbloquear_pagina)
+desbloquear_button.grid(row=5, column=1, padx=10, pady=20)
 
 #-----------Ajustar el tamaño de la ventana--------
 
