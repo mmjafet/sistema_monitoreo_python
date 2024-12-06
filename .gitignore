@@ -7,3 +7,5 @@ pruebas
 share
 pyvenv.cfg
 pruebas
+build
+dist
