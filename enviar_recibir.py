@@ -80,7 +80,8 @@ root = tk.Tk()
 root.title("Compartir Archivos")
 root.configure(bg="#0f1440")
 
-tk.Label(root, text="Compartir Archivos", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
+action_label = tk.Label(root, text="Compartir archivos", font=("Segoe UI", 25, "bold"), fg="#ecf0f1", bg="#0f1440")
+action_label.pack(fill="x", pady=(20, 30))
 
 #-------------------Frame para datos-------------------
 frame_data = create_frame_horizontal(root)
