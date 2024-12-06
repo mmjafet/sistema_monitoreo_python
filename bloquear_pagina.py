@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 import subprocess
 import paramiko
-from plantilla import crear_label, create_entry, create_button, centrar_frame_principal, create_frame_horizontal
+from plantilla import crear_label, create_entry, create_button, centrar_frame_principal, create_frame_horizontal, obtener_ip_local
 
 # Función para ejecutar comandos con sudo
 def run_command(command, password):
@@ -96,16 +96,20 @@ root.configure(bg="#0f1440")
 action_label = tk.Label(root, text="Bloquear/Desbloquear página", font=("Segoe UI", 25, "bold"), fg="#ecf0f1", bg="#0f1440")
 action_label.pack(fill="x", pady=(20, 30))
 
+# Mostrar la dirección IP de la máquina
+ip_local_label = tk.Label(root, text=f"Tu IP es: {obtener_ip_local()}", font=("Segoe UI", 14), fg="#ecf0f1", bg="#0f1440")
+ip_local_label.pack(fill="x", pady=(0, 20))
+
 # Campos para ingresar los datos
 #-------------------Frame para IP-------------------
 frame_ip = create_frame_horizontal(root)
 frame_ip.pack(padx=10, pady=10)
 
-crear_label("Dominio a bloquear/desbloquear:", frame_ip).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
+crear_label("Dominio de página:", frame_ip).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
 dominio_entry = create_entry(frame_ip, "")
 dominio_entry.grid(row=0, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 
-crear_label("IP del servidor:", frame_ip).grid(row=1, column=0, padx=10, ipadx=20, ipady=10)
+crear_label("IP remota:", frame_ip).grid(row=1, column=0, padx=10, ipadx=20, ipady=10)
 ip_entry = create_entry(frame_ip,"")
 ip_entry.grid(row=1, column=1, padx=10, pady = 15, ipadx=20, ipady=7)
 

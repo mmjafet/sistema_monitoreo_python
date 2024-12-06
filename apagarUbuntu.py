@@ -1,7 +1,7 @@
 import paramiko
 import tkinter as tk
 from tkinter import simpledialog, messagebox
-from plantilla import create_frame_horizontal, crear_label, create_button, create_entry, centrar_frame_principal
+from plantilla import create_frame_horizontal, crear_label, create_button, create_entry, centrar_frame_principal, obtener_ip_local
 
 def apagar_computadora():
     # Solicitar la contraseña de sudo
@@ -48,12 +48,16 @@ root.configure(bg="#0f1440")
 
 tk.Label(root, text="Detalles de conexión", font=("Arial", 18, "bold"), fg="#cdd4ea", bg="#0f1440").pack(pady=10)
 
+# Mostrar la dirección IP de la máquina
+ip_local_label = tk.Label(root, text=f"Tu IP es: {obtener_ip_local()}", font=("Segoe UI", 14), fg="#ecf0f1", bg="#0f1440")
+ip_local_label.pack(fill="x", pady=(0, 20))
+
 #-------------------Frame para ip-------------------
 frame_ip = create_frame_horizontal(root)
 frame_ip.pack(padx=10, pady=10)
 
 # Campos para IP, nombre de usuario y contraseña
-crear_label("IP del servidor", frame_ip).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
+crear_label("IP remota", frame_ip).grid(row=0, column=0, padx=10, ipadx=20, ipady=10)
 ip_entry = create_entry(frame_ip,"")
 ip_entry.grid(row=0, column=1, padx=10, ipadx=20, ipady=10)
 
