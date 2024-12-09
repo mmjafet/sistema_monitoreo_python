@@ -7,3 +7,4 @@ Sistema de monitoreo. Permite realizar acciones como:
 - Apagar una computadora remota 
 - Crear o unirse a una sala de chat
 - Mostrar acciones dd cliente 
+# sistema_monitoreo_python

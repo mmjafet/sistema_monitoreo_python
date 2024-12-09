@@ -10,7 +10,7 @@ def ejecutar_nomachine():
 
     try:
         # Ejecutar el comando para iniciar NoMachine en tu equipo local
-        comando = f"echo {sudo_password} | sudo -S /usr/NX/bin/nxplayer"
+        comando = f"echo {sudo_password} | sudo -S /usr/NX/NX/bin/nxplayer"
         resultado = subprocess.run(comando, shell=True, capture_output=True, text=True)
         
         if resultado.returncode != 0:
